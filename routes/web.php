@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/searchresult', 'CustomerController@searchresult')->name('searchresult')->middleware('auth');
+
+Route::resource('customer', 'CustomerController')->middleware('auth');
