@@ -16,9 +16,11 @@ class CreateCustomerMeterSetsTable extends Migration
         Schema::create('customer_meter_sets', function (Blueprint $table) {
             $table->bigIncrements('meter_set_id');
             $table->integer('customer_id')->nullable();
-            $table->integer('meter_id');
+            $table->integer('bulk_meter_id');
+            $table->integer('dom_meter_id');
             $table->date('date_installed')->nullable();
-            $table->string('meter_status', 5);
+            $table->string('bulk_meter_status', 5);
+            $table->string('dom_meter_status', 5);
             $table->date('date_removed')->nullable();
             $table->timestamps();
         });

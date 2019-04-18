@@ -18,9 +18,11 @@ class CreateMeterReadingsTable extends Migration
             $table->integer('meter_set_id');
             $table->date('reading_date');
             $table->string('period', 6);
-            $table->float('meter_reading');
-            $table->float('usage');
+            $table->float('dom_meter_reading');
+            $table->float('bulk_meter_reading');
+            $table->float('consumption');
             $table->integer('previous_reading_id');
+            $table->integer('remaining_units');
             $table->timestamps();
         });
     }
