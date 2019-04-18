@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-sm-10">
+        <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-header">Customer Information - Customer ID {{ $customer->customer_id }}</h5>
@@ -42,7 +42,7 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-10">
+        <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-header">Metering Info - Customer ID {{ $customer->customer_id }}</h6>
@@ -53,7 +53,7 @@
                             <h5 class="card-header">Current Data</h5>
 
                             @foreach ($currentMeterData as $meter)
-                            <table class="table">
+                            <table class="table table-condensed">
                                 <thead>
                                     <tr>
                                         <th>Type</th>
@@ -89,7 +89,7 @@
                         <div class="col-sm-7">
                             <h5 class="card-header">Historical Data</h5>
 
-                            <table class="table">
+                            <table class="table table-condensed">
                                 <thead>
                                     <tr>
                                         <td>Date</td>
@@ -98,6 +98,7 @@
                                         <td>Inlet</td>
                                         <td>Received</td>
                                         <td>Remain</td>
+                                        <td>#</td>
                                     </tr>
                                 </thead>
                                 @foreach ($historicalMeterData as $historical)
@@ -108,6 +109,9 @@
                                     <td>{{ $historical->bulk_meter_reading }}</td>
                                     <td>{{ $historical->bulk_consumption }}</td>
                                     <td>{{ $historical->remaining_units }}</td>
+                                    <td> <a class="btn btn-small btn-primary" data-toggle="modal"
+                                            data-target="#billInfo" data-whatever="'.$mem['sn'].' ">View</a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </table>

@@ -29,7 +29,9 @@ class CustomerController extends Controller
     public function create()
     {
         $towns = Town::orderBy('town')->pluck('town', 'town_id');
-        return view('customercare.customer.create')->with('towns', $towns);
+        $customer_status = Code::where('mcode', 'CS')->orderBy('code_desc')->pluck('code_desc', 'code');
+        return view('customercare.customer.create')->with('towns', $towns)
+                                                   ->with('customer_status', $customer_status);
     }
 
     /**
@@ -62,7 +64,7 @@ class CustomerController extends Controller
           ]);
 
           $customer->save();
-          return redirect('/customer')->with('success', 'Customer has been added');
+          return redirect('/customer')->with('success', 'Customer has been added. Customer ID '.$customer->customer_id);
     }
 
     /**
@@ -128,12 +130,18 @@ class CustomerController extends Controller
             $meter_no = $request->get('meter_no');
         }
         
+        if(!$customer){
+            //return redirect('/customer')->with('errors', [''=>'Customer not found']);
+            return redirect()->back()->withInput()->withErrors("Customer not found");
+        }
+
         $town = Town::where('town_id', $customer->town)->first();
 
         $status = Code::where('code', $customer->customer_status)->first();
 
         $customer_id = $customer->customer_id;
 
+        
         $currentMeterData = DB::select('select cb.meter_set_id, cb.customer_id, 
                                                 cb.dom_meter_id, md.meter_no as dom_meter,
                                                 cb.bulk_meter_id, mb.meter_no as bulk_meter,

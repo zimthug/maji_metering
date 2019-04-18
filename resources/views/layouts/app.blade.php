@@ -48,6 +48,7 @@
                                 <a class="dropdown-item" href="{{ url('/meter') }}">Metering</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ url('/assign_meters') }}">Assign Meters</a>
+                                <a class="dropdown-item" href="{{ url('/meter_reading') }}">Meter Reading</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Reports</a>
                             </div>

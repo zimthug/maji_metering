@@ -80,9 +80,12 @@
                         <label for="customer_status" class="col-sm-2 col-form-label">Customer Status</label>
                         <div class="col-sm-8">
                             <select name="customer_status" class="form-control" required>
-                                <option selected>Choose...</option>
-                                <option value="ACT01">Active</option>
-                                <option value="ACT02">Disconnected</option>
+                                <option selected value="">Choose...</option>
+                                @foreach($customer_status as $code => $code_desc)
+                                <option value="{{ $code }}">
+                                    {{ $code_desc }}
+                                </option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
