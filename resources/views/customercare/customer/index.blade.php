@@ -14,7 +14,7 @@
                         <div class="form-group row p-2">
                             <label for="customer_id" class="col-sm-3 col-form-label">Customer ID</label>
                             <div class="col-sm-6">
-                                <input type="name" class="form-control" name="customer_id">
+                                <input type="number" class="form-control" name="customer_id">
                             </div>
                         </div>
 

@@ -26,3 +26,7 @@ Route::resource('customer', 'CustomerController')->middleware('auth');
 Route::get('/meter', 'MeteringController@createMeter')->name('meter.create')->middleware('auth');
 
 Route::post('/meter', 'MeteringController@storeMeter')->name('meter.store')->middleware('auth');
+
+Route::get('/assign_meters', 'MeteringController@createMeterAssignment')->name('meter.assignment')->middleware('auth');
+
+Route::post('/assign_meters', 'MeteringController@assignMeter')->name('meter.assignment')->middleware('auth');
