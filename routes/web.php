@@ -22,3 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/searchresult', 'CustomerController@searchresult')->name('searchresult')->middleware('auth');
 
 Route::resource('customer', 'CustomerController')->middleware('auth');
+
+Route::get('/meter', 'MeteringController@createMeter')->name('meter.create')->middleware('auth');
+
+Route::post('/meter', 'MeteringController@storeMeter')->name('meter.store')->middleware('auth');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Code;
 use App\Town;
 use App\Customer;
 use App\Http\Requests\StoreCustomerPost;
@@ -109,19 +110,31 @@ class CustomerController extends Controller
         //
     }
 
+    /*
+    static function getTownName($town_id)
+    {
+        return Town::where('town_id', $town_id)->get('town');
+    }*/
 
     public function searchresult(Request $request)
     {
         if($request->get('customer_id')){
             $customer_id = $request->get('customer_id');
+            $customer = Customer::where('customer_id', $customer_id)->first();
         }
         
         if($request->get('meter_no')){
             $meter_no = $request->get('meter_no');
         }
         
-        $customer = Customer::where('customer_id', $customer_id)->first();
+        $town = Town::where('town_id', $customer->town)->first();
 
-        return view('customercare.customer.searchresult')->with('customer', $customer);
+        $status = Code::where('code', $customer->customer_status)->first();
+
+        return view('customercare.customer.searchresult')->with('customer', $customer)
+        ->with('town_name', $town->town)    
+        ->with('status_desc', $status->code_desc);
     }
+
+    
 }
